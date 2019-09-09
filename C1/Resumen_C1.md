@@ -104,3 +104,50 @@ __Figura 1:__ Imagen sacada de _Digital Signal Processing_
 
 
 ## Analógico a digital y digital a analógico
+
+Muchas señales de interés son analógicas. Para procesar una señal analógica de manera digital, primero hay que digitalizarla.
+
+> Esto tampoco es pertinente para el C1, por lo que lo dejaré para después
+
+
+## Teorema del muestreo
+
+Si tenemos una señal analógica ¿Como encontramos la frecuencia de muestreo $F_s$? Para responder esta pregunta es necesario conocer ciertas características de la señal de interés. En particular, tenemos que tener ciertas nociones del _contenido frecuencial_ de la señal. Por lo general podemos conocer esa información en forma de cotas superiores.
+
+Supongamos que cualquier señal analógica puede ser representada como un suma de senos (Fourier se encarga de eso).
+
+$$x_a(t)=\sum_{i=1}^NA_i\cos(2\pi F_it+\theta_i)$$
+
+Donde $N$ es el número de frecuencias presentes.
+
+El teorema nos dice que (se viene golazo, pero en virtud del tiempo lo voy a plantear no más, en todo caso es fácil de ver que tiene que ver con el aliasing de las señales al tomar mal la frecuencia de muestreo) $F_s>2F_{\text{max}}$
+
+Donde $F_{\text{max}}$ es la frecuencia más alta presente en la señal.
+
+Usando esto, cualquier componente de frecuencia $|F_i|<F_{\text{max}}$, en analógica, pasa a ser una señal sinusoidal discreta con una frecuencia:
+
+$$-\frac{1}{2}\leq f_i=\frac{F_i}{F_s}\leq \frac{1}{2}$$
+
+o de manera equivalente:
+
+$$-\pi\leq \omega_i=2\pi f_i\leq \pi$$
+Como $|f|=1/2$ o $|\omega|=\pi$ son las frecuencias más altas en tiempo discreto, si escogemos el muestreo como se mostró, se evita el problema del aliasing.
+
+Así la condición $F_s>2F_{\text{max}}$ garantiza que el mapeo de frecuencias continuas pase con relación 1 a 1 al dominio discreto.
+
+__Teorema del muestreo:__
+Si la frecuencia más alta contenida en una señal analógica $x_a(t)$ es $F_{\text{max}}=B$ y la señal se muestrea de tal manera que $F_s>2B$, entonces $x_a(t)$ puede ser recuperada con la función interpolación
+
+$$g(t)=\frac{\sin2\pi B t}{2\pi B t}$$
+
+Así $x_a(t)$ puede ser expresada como:
+
+$$x_a(t)=\sum_{n=-\infty}^\infty x_a\left(\frac{n}{2B}\right)\frac{\sin 2 \pi B(t-n/2B)}{2 \pi B(t-n/2B)}$$
+
+
+>TODO: Falta poner un par de imágenes
+
+
+
+
+## Señales y sistemas en tiempo discreto
