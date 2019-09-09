@@ -352,4 +352,33 @@ Tanto en el diseño como en el análisis de sistemas, nos interesa ver sus propi
 
 #### Sistemas estáticos versus sistemas dinámicos
 
+
 Un sistema se dice _estático_ o _sin memoria_ si la salida del sistema depende a lo más, del input que se está procesando en ese momento dado, esto es, que no está ni ahí con lo que pase antes o después, por eso sin memoria, como mi abuelita. En cualquier otro caso, se dice que el sistema es _dinámico_ o que _tiene memoria_.
+Si la salida de un sistema en un tiempo $n$ está totalmente determinada por las muestras de entrada den el intervalo desde $n-N$ a $n$ ($N\geq0$) Se dice que el sistema tiene duración de memoria $N$, si $N=0$ el sistema es estático. Si $N$ es finito, el sistema tiene memoria finita, si $N$ es infinito ---diverge---
+, el sistema tiene memoria infinita.
+
+
+Los sistemas estáticos o sin memoria son descritos en general de la siguiente manera:
+
+$$
+y(n)=\mathcal{T}[x(n),n]
+$$
+
+#### Sistemas invariantes en el tiempo versus sistemas variantes en el tiempo
+
+Podemos subdividir los sistemas en sistemas variantes e invariantes en el tiempo. Un sistema se dice invariante en el tiempo si su característica entrada-salida no cambia en el tiempo.
+
+> Definición: Un sistema relajado $\mathcal{T}$ es _invariante en el tiempo_ ssi:
+> $$
+> x(n)\xrightarrow[\quad]{\mathcal{T}}y(n) \implies x(n-k)\xrightarrow[\quad]{\mathcal{T}}y(n-k); \quad \forall \quad x(n),k
+> $$
+
+Esta es la prueba que hay que aplicar para saber si un sistema es invariante en el tiempo. Primero excitamos un sistema con una entrada arbitraria y después usamos el operador de desplazamiento temporal.
+
+$$
+y(n,k)=\mathcal{T}[x(n-k)]
+$$
+Si $y(n,k)=y(n-k)$ para cualquier valor de $k$, entonces el sistema __es invariante en el tiempo__.
+
+
+#### Sistemas lineales versus sistemas no-lineales
