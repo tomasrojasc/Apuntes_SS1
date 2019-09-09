@@ -281,3 +281,69 @@ x(-n)=-x(n)
 $$
 
 Notemos que si $x(n)$ es impar, entonces $x(0)=0$
+
+
+Cualquier señal puede ser construida como una suma de una señal par y una impar.
+
+La función par viene dada por:
+
+$$
+x_e(n)=\frac{1}{2}[x(n)+x(-n)]
+$$
+
+la impar por:
+
+$$
+x_o(n)=\frac{1}{2}[x(n)-x(-n)]
+$$
+
+Así:
+
+$$
+x(n)=x_e(n)+x_o(n)
+$$
+
+
+
+## Manipulaciones simples de Señales a tiempo discreto
+
+Acá vamos a ver transformaciones simples de señales
+
+#### Transformación de la variable independiente (tiempo)
+
+Una señal $x(n)$ puede ser trasladada en el tiempo cambiando el argumento $n$ por $n-k$, donde $k$ es un entero. Si es positivo, se traslada hacia la derecha (retardo) si es negativo hacia la izquierda (adelanto).
+
+Otra transformación útil es la de reflexión temporal con respecto al origen, para esto basta con reemplazar el argumento $n$ por $-n$
+
+
+__Es importante notar que estas operaciones no son conmutativas entre sí.__
+
+
+### Sistemas en tiempo discreto
+
+Un sistema discreto es uno que recibe una señal discreta y aplica una operación de tal manera que la salida es también una señal discreta, llamada salida o respuesta del sistema.
+
+![](./img/img3.png)
+__Figura 3__: Representación de un sistema discreto
+
+
+Cuando pasamos una señal $x(n)$ por un sistema, decimos que aplicamos una transformación sobre la entrada para producir la salida $y(n)$. Esta relación se expresa matemáticamente así:
+
+$$
+y(n)\equiv \mathcal{T}[x(n)]
+$$
+
+donde $\mathcal{T}$ representa la transformación
+
+
+Hay varias maneras de describir las características de un sistema de operaciones aplicadas a $x(n)$ para producir $y(n)$ Partamos con la descripción entrada-salida.
+
+## Descripción entrada-salida de un sistema
+
+En este caso el sistema se tomo como _caja negra_
+
+$$
+x(n) \xrightarrow[\qquad]{\mathcal{T}}y(n)
+$$
+
+### Clasificación de sistemas a tiempo discreto
