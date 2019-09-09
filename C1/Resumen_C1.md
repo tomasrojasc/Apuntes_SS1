@@ -1,5 +1,7 @@
 # Apunte Señales y Sistemas I
 Por: Tomás Rojas
+
+
 # Señales, sistemas y procesamiento de señales
 
 > Definición: Una __señal__ es cualquier cantidad física que varia en el tiempo, en el espacio o cualquier otra variable.
