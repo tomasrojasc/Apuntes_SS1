@@ -458,3 +458,61 @@ $$
 $$
 
 Donde $\mathcal{T}_p=\mathcal{T}_1+\mathcal{T}_2$
+
+
+## Análisis de señales a tiempo discreto en sistemas LTI
+
+
+La idea de esta sección es mostrar que los sistemas LTI están caracterizados por su respuesta a una muestra unitaria. De igual manera, vamos a mostrar que cualquier señal discreta se puede descomponer como una suma ponderada de muchas unidades. La forma general que relaciona la respuesta de impulso unitario (muestra unitaria) y la salida de un sistema a una entrada arbitraria, la suma de convolución, también será mostrada en esta sección. Así vamos a poder saber la salida de cualquier sistema con solo conocer la convolución y cómo se relaciona con el impulso unitario.
+
+### Técnicas para el análisis de sistemas lineales
+
+Hay dos métodos básicos para analizar el comportamiento o respuesta de un sistema lineal a una determinada entrada. Un método está basado en la solución directa de la relación entrada-salida del sistema, que en general, tiene la forma:
+
+$$
+y(n)=F[y(n-1),y(n-2),...,y(n-N);x(n),x(n-1),...,x(n-M)]
+$$
+
+donde $F[\cdot]$ es una función de las cantidades entre los paréntesis. En particular, para un sistema LTI, veremos que la relación entrada-salida está dada por:
+
+$$
+y(n)=-\sum_{k=1}^Na_ky(n-k)+\sum_{k=0}^Mb_kx(n-k)
+$$
+
+donde $\{a_k\}$ y $\{b_k\}$ son parámetros constantes que especifican el sistema y son independientes de $x(n)$ e $y(n)$. La relación de entrada-salida se llama ecuación de diferencias y representa una manera de caracterizar el comportamiento de un sistema a tiempo discreto LTI.
+
+#### Segundo método:
+Supongamos que la señal de entrada $x(n)$ se descompuso en una suma ponderada de señales elementales $\{x_k(n)\}$ de la siguiente manera:
+
+$$
+x(n)=\sum_k c_k x_k(n)
+$$
+
+donde $\{c_k\}$ son un conjunto de amplitudes en la descomposición de la señal $x(n)$. Ahora supongamos que la respuesta de un componente de señal $x_k(n)$ es $y_k(n)$. Así:
+
+$$
+y_k(n)\equiv \mathcal{T}[x_k(n)]
+$$
+
+Asumiendo que el sistema está relajado y la respuesta a $c_kx_k(n)$ es $c_ky_k(n)$, tenemos:
+
+$$
+\begin{aligned}
+y(n)&=\mathcal{T}[x(n)]=\mathcal{T}\left[\sum_kc_kx_k(n)\right]\\
+&=\sum_kc_k\mathcal{T}[x_k(n)]\\
+&=\sum_kc_ky_k(n)
+\end{aligned}
+$$
+
+La base a escoger como nuestras _señales fundamentales_ depende mucho de la naturaleza de las señales de entrada que estemos considerando. Por ejemplo si la entrada es periódica, una buena base serían exponenciales complejas:
+
+$$
+x_k(n)=e^{j\omega_k n}, \qquad k=0,1,2,...,N-1
+$$
+donde las frecuencias $\{\omega_k\}$ están relacionadas de manera armónica, esto es:
+
+$$
+\omega_k\left(\frac{2\pi}{N}\right)k, \qquad k=0,1,2,...,N-1
+$$
+
+La frecuencia $2\pi/N$ es la _frecuencia funcdamental_ y todos los componentes de más alta frecuencia de la base son multiplos enteros de esta.
