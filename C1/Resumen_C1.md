@@ -408,3 +408,51 @@ Kerimoh sistemas estables porque en la práctica son más útiles
 > $$
 > |x(n)|\leq M_x<\infty, \qquad |y(n)|\leq M_y<\infty, \qquad \forall \quad n
 > $$
+
+
+### Interconexión de sistemas en tiempo discreto
+
+Los sistemas discretos en el tiempo pueden ser interconectados para crear sistemas más complejos, grandotes y fortotototes. Hay dos maneras básicas de conectarlos: en cascada (serie) o en paralelo.
+
+![](./img/img4.png)
+__Figura 4:__ Ilustración de dos sistemas conectados en serie y en paralelo.
+
+
+En el caso cascada tenemos
+$$
+y_1(n)=\mathcal{T}_1[x(n)]
+$$
+y la salida del segundo sistema es:
+$$
+\begin{align}
+y(n)&=\mathcal{T}_2[y_1(n)]\\
+&=\mathcal{T}_2[\mathcal{T}_1[x(n)]]
+\end{align}
+$$
+
+Notamos que los sistemas $\mathcal{T}_1$ y $\mathcal{T}_1$ pueden ser combinados de la siguiente manera:
+
+$$
+\mathcal{T}_c \equiv \mathcal{T}_2\mathcal{T}_1
+$$
+
+En general, el orden en que aplicamos los operadores es importante y
+
+$$
+\mathcal{T}_1\mathcal{T}_2\neq \mathcal{T}_2\mathcal{T}_1
+$$
+pero si nuestros sistemas son lineales e invariantes en el tiempo, entonces $\mathcal{T}_c$ es invariante y ahí sí $\mathcal{T}_1\mathcal{T}_2 = \mathcal{T}_2\mathcal{T}_1$
+
+
+Para conexiones paralelas tenemos la misma idea:
+
+$$
+\begin{align}
+y_3(n)&=y_1(n)+y_2(n)\\
+&=\mathcal{T}_1[x(n)]+\mathcal{T}_2[x(n)]\\
+&=(\mathcal{T}_1+\mathcal{T}_2)[x(n)]\\
+&=\mathcal{T}_p[x(n)]
+\end{align}
+$$
+
+Donde $\mathcal{T}_p=\mathcal{T}_1+\mathcal{T}_2$
