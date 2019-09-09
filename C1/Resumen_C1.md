@@ -208,4 +208,41 @@ $$
 Que tiene parte real e imaginaria dadas por la identidad de Euler.
 
 
-## Clasificación de las señales discretas en el tiempo
+## Clasificación de las señales discretas en el tiempo (energía y potencia)
+
+### Energía de una señal
+
+La energía $E$ de una señal viene dada por:
+
+$$
+E\equiv \sum_{n=-\infty}^\infty|x(n)|^2
+$$
+
+Usamos el cuadrado de la función ya que esta sirve para señales tanto reales como complejas. La energía de una señal puede o no ser finita. Cuando la energía de una señal es finita, se dice que es una _señal de energía_
+
+Definimos además la energía de una señal en un intervalo finito $-N\leq n \leq N$
+
+$$
+E_N\equiv\sum_{n=-N}^N|x(n)|^2
+$$
+
+así podemos redefinir la energía como
+
+$$
+E\equiv \lim_{N \to \infty} E_N
+$$
+
+
+### Potencia promedio de una señal
+
+Muchas señales con energía infinita, tienen potencia promedio finita. La potencia promedio de una señal discreta se define como:
+
+$$
+P=\lim_{N \to \infty} \frac{1}{2N+1}\sum_{n=-N}^N|x(n)|^2
+$$
+
+También podemos definir la potencia media como:
+
+$$
+P\equiv \lim_{N \to \infty}\frac{1}{2N+1}E_N
+$$
