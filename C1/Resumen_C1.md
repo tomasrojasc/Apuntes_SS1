@@ -142,7 +142,7 @@ $$g(t)=\frac{\sin2\pi B t}{2\pi B t}$$
 
 Así $x_a(t)$ puede ser expresada como:
 
-$$x_a(t)=\sum_{n=-\infty}^\infty x_a\left(\frac{n}{2B}\right)\frac{\sin 2 \pi B(t-n/2B)}{2 \pi B(t-n/2B)}$$
+$$x_a(t)=\sum_{n=-\infty}^\infty x_a\left(\frac{n}{2B}\right)\frac{\sin[ 2 \pi B(t-n/2B)]}{2 \pi B(t-n/2B)}$$
 
 
 >TODO: Falta poner un par de imágenes
@@ -163,7 +163,7 @@ __Figura 2__
 
 ## Señales elementales en tiempo discreto
 
-### 1.- Muestra unitaria
+#### 1.- Muestra unitaria
 
 Es una señal que es 1 en 0 pero 0 en todo lo demás
 
@@ -174,7 +174,7 @@ $$\delta(n)=
 \end{cases}
 $$
 
-### 2.- Señal escalón unitario
+#### 2.- Señal escalón unitario
 
 $$
 u(n)=
@@ -185,7 +185,7 @@ u(n)=
 $$
 
 
-### 3.- Señal rampa unitaria
+#### 3.- Señal rampa unitaria
 $$
 u_r(n)=
 \begin{cases}
@@ -194,7 +194,7 @@ u_r(n)=
 \end{cases}
 $$
 
-### 4.- Señal exponencial
+#### 4.- Señal exponencial
 $$
 x(n)=a^n \quad \forall n
 $$
@@ -233,9 +233,9 @@ E\equiv \lim_{N \to \infty} E_N
 $$
 
 
-### Potencia promedio de una señal
+### Potencia media de una señal
 
-Muchas señales con energía infinita, tienen potencia promedio finita. La potencia promedio de una señal discreta se define como:
+Muchas señales con energía infinita, tienen potencia media finita. La potencia media de una señal discreta se define como:
 
 $$
 P=\lim_{N \to \infty} \frac{1}{2N+1}\sum_{n=-N}^N|x(n)|^2
@@ -246,3 +246,36 @@ También podemos definir la potencia media como:
 $$
 P\equiv \lim_{N \to \infty}\frac{1}{2N+1}E_N
 $$
+
+
+### Periodicidad de una señal
+
+Una señal es periódica con periodo $N \quad (N>0)$ ssi:
+
+$$
+x(n+N)=x(n) \qquad \forall n
+$$
+
+El valor más pequeño de $N$ para el cual lo anterior es válido, se llama el _periodo fundamental de la señal_ Si no hay valor que satisfaga esta relación, entonces se dice que la señal es no-periódica o a-periódica.
+
+La energía de una señal periódica $x(n)$ en un periodo ---Por ejemplo $0\leq n\leq N-1$--- es finita si solo toma valores finitos en el periodo. Por otro lado la potencia media de una señal periódica es finita y es igual a la potencia media de un único periodo. Así si $x(n)$ es una señal periódica con periodo fundamental $N$ y toma valores finitos, tenemos que su potencia está dada por:
+
+$$
+P=\frac{1}{N}\sum_{n=0}^{N-1}|x(n)|^2
+$$
+Así, las señales periódicas son señales de potencia.
+
+### Señales pares e impares
+
+Una señal real $x(n)$ es simétrica o par si:
+
+$$
+x(-n)=x(n)
+$$
+Por otro lado es antisimétrica o impar si:
+
+$$
+x(-n)=-x(n)
+$$
+
+Notemos que si $x(n)$ es impar, entonces $x(0)=0$
