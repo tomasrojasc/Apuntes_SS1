@@ -347,3 +347,9 @@ x(n) \xrightarrow[\qquad]{\mathcal{T}}y(n)
 $$
 
 ### Clasificación de sistemas a tiempo discreto
+
+Tanto en el diseño como en el análisis de sistemas, nos interesa ver sus propiedades. Para poder hablar de propiedades de un sistema, estas tienen que satisfacerse para cualquier entrada que le pongamos, de otra manera no podemos hablar de que el sistema posea efectivamente la propiedad.
+
+#### Sistemas estáticos versus sistemas dinámicos
+
+Un sistema se dice _estático_ o _sin memoria_ si la salida del sistema depende a lo más, del input que se está procesando en ese momento dado, esto es, que no está ni ahí con lo que pase antes o después, por eso sin memoria, como mi abuelita. En cualquier otro caso, se dice que el sistema es _dinámico_ o que _tiene memoria_.
