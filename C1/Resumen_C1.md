@@ -340,7 +340,7 @@ Hay varias maneras de describir las características de un sistema de operacione
 
 ## Descripción entrada-salida de un sistema
 
-En este caso el sistema se tomo como _caja negra_
+En este caso el sistema se tomó como _caja negra_
 
 $$
 x(n) \xrightarrow[\qquad]{\mathcal{T}}y(n)
