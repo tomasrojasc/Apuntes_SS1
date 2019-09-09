@@ -383,6 +383,8 @@ Si $y(n,k)=y(n-k)$ para cualquier valor de $k$, entonces el sistema __es invaria
 #### Sistemas lineales versus sistemas no-lineales
 
 Un sistema lineal es aquel que satisface el _principio de superposición_
+
+
 > Definición: Un sistema es lineal ssi:
 > $$
 > \mathcal{T}[a_1x_1(n)+a_2x_2(n)]=a_1\mathcal{T}[x_1(n)]+a_2\mathcal{T}[x_2(n)]
@@ -516,3 +518,30 @@ $$
 $$
 
 La frecuencia $2\pi/N$ es la _frecuencia funcdamental_ y todos los componentes de más alta frecuencia de la base son multiplos enteros de esta.
+
+
+### Descomponiendo una señal en tiempo discreto a impulsos.
+
+Supongamos que tenemos una señal arbitraria $x(n) que queremos descomponer en una suma de impulsos unitarios. La descomposición matemáticamente se ve como sigue:
+
+$$
+x_k(n)=\delta(n-k)
+$$
+
+donde $k$ representa el atraso de cada impulso individualmente.
+
+Ahora supongamos que multiplicamos $x(n)$ con $\delta(n-k)$. Como el impulso es 0 en todos lados menos en $n=k$ donde vale 1, el resultado es otro impulso solo que puede no valer 1, sino que vale $x(k)$:
+
+$$
+x(n)\delta(n-k)=x(k)\delta(n-k)
+$$
+si ahora repetimos lo mismo pero con $m$ y con $m\neq k$ podemos repetir lo mismo. Gráficamente, tenemos:
+
+![](img/img5.png)
+__Figura 5:__ Representación gráfica de la descomposición de una señal en impulsos.
+
+Asi:
+
+$$
+x(n)=\sum_{k=-\infty}^\infty x(k)\delta(n-k)
+$$
