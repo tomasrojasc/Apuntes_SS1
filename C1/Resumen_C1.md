@@ -423,7 +423,6 @@ $$
 y_1(n)=\mathcal{T}_1[x(n)]
 $$
 y la salida del segundo sistema es:
-<<<<<<< HEAD
 
 
 $$
@@ -431,13 +430,6 @@ $$
   y(n)&=\mathcal{T}_2[y_1(n)]\\
   &=\mathcal{T}_2[\mathcal{T}_1[x(n)]]
 \end{aligned}
-=======
-$$
-\begin{align}
-y(n)&=\mathcal{T}_2[y_1(n)]\\
-&=\mathcal{T}_2[\mathcal{T}_1[x(n)]]
-\end{align}
->>>>>>> 6ac9e084471102e2c918abc1a9ea0e56957ae4a5
 $$
 
 Notamos que los sistemas $\mathcal{T}_1$ y $\mathcal{T}_1$ pueden ser combinados de la siguiente manera:
@@ -457,21 +449,12 @@ pero si nuestros sistemas son lineales e invariantes en el tiempo, entonces $\ma
 Para conexiones paralelas tenemos la misma idea:
 
 $$
-<<<<<<< HEAD
 \begin{aligned}
   y_3(n)&=y_1(n)+y_2(n)\\
   &=\mathcal{T}_1[x(n)]+\mathcal{T}_2[x(n)]\\
   &=(\mathcal{T}_1+\mathcal{T}_2)[x(n)]\\
   &=\mathcal{T}_p[x(n)]
 \end{aligned}
-=======
-\begin{align}
-y_3(n)&=y_1(n)+y_2(n)\\
-&=\mathcal{T}_1[x(n)]+\mathcal{T}_2[x(n)]\\
-&=(\mathcal{T}_1+\mathcal{T}_2)[x(n)]\\
-&=\mathcal{T}_p[x(n)]
-\end{align}
->>>>>>> 6ac9e084471102e2c918abc1a9ea0e56957ae4a5
 $$
 
 Donde $\mathcal{T}_p=\mathcal{T}_1+\mathcal{T}_2$
