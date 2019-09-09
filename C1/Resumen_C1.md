@@ -380,5 +380,31 @@ y(n,k)=\mathcal{T}[x(n-k)]
 $$
 Si $y(n,k)=y(n-k)$ para cualquier valor de $k$, entonces el sistema __es invariante en el tiempo__.
 
-
 #### Sistemas lineales versus sistemas no-lineales
+
+Un sistema lineal es aquel que satisface el _principio de superposición_
+> Definición: Un sistema es lineal ssi:
+> $$
+> \mathcal{T}[a_1x_1(n)+a_2x_2(n)]=a_1\mathcal{T}[x_1(n)]+a_2\mathcal{T}[x_2(n)]
+> $$
+> Para cualquiera entradas y constantes $x_i(n), a_i$ respectivamente.
+
+
+#### Sistemas causales versus sistemas no-causales
+
+> Definición: Un sistema se dice _causal_ si la salida del sistema para cualquier tiempo $n$ depende solo de entradas presentes y/o pasadas, pero no de futuras. Matemáticamente:
+> $$
+> y(n)=F[x(n),x(n-1),x(n-2),...]
+> $$
+> donde $F[\cdot]$ es una función arbitraria.
+
+Si un sistema no cumple con esta condición, se dice que es _no-causal_
+
+#### Sistema estable versus sistema inestable
+
+Kerimoh sistemas estables porque en la práctica son más útiles
+
+> Definición: Un sistema se dice bounded input–bounded output (BIBO) estable ssi toda entrada acotada produce una salida acotada. Matemáticamente:
+> $$
+> |x(n)|\leq M_x<\infty, \qquad |y(n)|\leq M_y<\infty, \qquad \forall \quad n
+> $$
