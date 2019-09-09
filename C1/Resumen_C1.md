@@ -1,6 +1,6 @@
 # Apunte Señales y Sistemas I
 Por: Tomás Rojas
-## Señales, sistemas y procesamiento de señales
+# Señales, sistemas y procesamiento de señales
 
 > Definición: Una __señal__ es cualquier cantidad física que varia en el tiempo, en el espacio o cualquier otra variable.
 
@@ -110,7 +110,7 @@ Muchas señales de interés son analógicas. Para procesar una señal analógica
 > Esto tampoco es pertinente para el C1, por lo que lo dejaré para después
 
 
-## Teorema del muestreo
+### Teorema del muestreo
 
 Si tenemos una señal analógica ¿Como encontramos la frecuencia de muestreo $F_s$? Para responder esta pregunta es necesario conocer ciertas características de la señal de interés. En particular, tenemos que tener ciertas nociones del _contenido frecuencial_ de la señal. Por lo general podemos conocer esa información en forma de cotas superiores.
 
@@ -150,4 +150,62 @@ $$x_a(t)=\sum_{n=-\infty}^\infty x_a\left(\frac{n}{2B}\right)\frac{\sin 2 \pi B(
 
 
 
-## Señales y sistemas en tiempo discreto
+# Señales y sistemas en tiempo discreto
+
+En esta sección se ven mucho los sistemas LTI, tema central del curso.
+
+## Señales en tiempo discreto
+Una señal en tiempo discreto $x(n)$ es una función de una variable independiente que es un entero. Como muestra la _figura 2_, la señal __no está definida__ para valores de $n$ que no sean enteros (ni siquiera es 0).
+
+![](./img/img2.png)
+__Figura 2__
+
+
+## Señales elementales en tiempo discreto
+
+### 1.- Muestra unitaria
+
+Es una señal que es 1 en 0 pero 0 en todo lo demás
+
+$$\delta(n)=
+\begin{cases}
+  1, &\quad \text{para } n=0\\
+  0, &\quad \text{para } n\neq0
+\end{cases}
+$$
+
+### 2.- Señal escalón unitario
+
+$$
+u(n)=
+\begin{cases}
+  1, &\quad \text{para } n\geq 0\\
+  0, &\quad \text{para } n<0
+\end{cases}
+$$
+
+
+### 3.- Señal rampa unitaria
+$$
+u_r(n)=
+\begin{cases}
+  n, &\quad \text{para } n\geq 0\\
+  0, &\quad \text{para } n<0
+\end{cases}
+$$
+
+### 4.- Señal exponencial
+$$
+x(n)=a^n \quad \forall n
+$$
+
+A puede ser real o complejo, si usamos propiedades los complejos, tenemos:
+
+$$
+x(n)=r^ne^{jn\theta}
+$$
+
+Que tiene parte real e imaginaria dadas por la identidad de Euler.
+
+
+## Clasificación de las señales discretas en el tiempo
