@@ -540,8 +540,57 @@ si ahora repetimos lo mismo pero con $m$ y con $m\neq k$ podemos repetir lo mism
 ![](img/img5.png)
 __Figura 5:__ Representación gráfica de la descomposición de una señal en impulsos.
 
-Asi:
+Así:
 
 $$
 x(n)=\sum_{k=-\infty}^\infty x(k)\delta(n-k)
 $$
+
+
+### Respuesta de sistemas LTI a entradas arbitrarias: La suma de convolución
+
+Denotemos la respuesta a un componente de impulso como $y(n,k)$, pero como es la respuesta al impulso en $n=k$, de damos una letra especial $h(n,k)$
+
+$$
+y(n,k)\equiv h(n,k) = \mathcal{T}[\delta(n-k)]
+$$
+
+Pero podemos usar esto para una entrada arbitraria de la manera que vimos antes.
+
+$$
+x(n)=\sum_{k=-\infty}^\infty x(n)\delta(n-k)
+$$
+
+
+así tenemos :
+
+
+$$
+\begin{aligned}
+y(n) &= \mathcal{T}[x(n)]=\mathcal{T}\left[\sum_{k=-\infty}^\infty x(k)\delta(n-k)\right]\\
+&=\sum_{k=-\infty}^\infty x(k)\mathcal{T}[\delta(n-k)]\\
+&=\sum_{k=-\infty}^\infty x(k)h(n,k)
+\end{aligned}
+$$
+
+Notemos que para lo anterior, no hubo que aplicar invarianza en el tiempo, de hecho si asumimos que nuestra señal es LTI, la cosa se pone más izipizi:
+
+$$
+h(n)\equiv \mathcal{T}[\delta(n)]
+$$
+
+aplicando invarianza en el tiempo:
+
+$$
+h(n-k)= \mathcal{T}[\delta(n-k)]
+$$
+
+Así:
+
+$$
+y(n) = \sum_{k=-\infty}^\infty x(k)h(n-k)
+$$
+
+Así, vemos que un sistema LTI está caracterizado por una sola función $h(n)$ que es la _respuesta al impulso_. La relación de la ecuación anterior es la llamada __suma de convolución__
+
+__Receta:__ Para calcular la salida de convolución hacemos lo que sigue.
