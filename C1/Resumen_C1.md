@@ -594,3 +594,70 @@ $$
 Así, vemos que un sistema LTI está caracterizado por una sola función $h(n)$ que es la _respuesta al impulso_. La relación de la ecuación anterior es la llamada __suma de convolución__
 
 __Receta:__ Para calcular la salida de convolución hacemos lo que sigue.
+
+Supongamos que queremos calcular la salida de un sistema para un determinado tiempo $n=n_0$. La respuesta, como vimos, está dada por:
+
+$$
+y(n_0)=\sum_{k=-\infty}^\infty x(k)h(n_0-k)
+$$
+
+Los pasos son:
+
+  + ___Reflexión:___ Se refleja $h(k)$ respecto a $k=0$ para obtener $h(-k)$
+  + ___Desplazamiento:___ Se desplaza $h(-k)$ una cantidad $n_0$ hacia la derecha si $n_0$ es positivo para obtener $h(n_0-k)
+  + ___Multiplicación:___ Se multiplica $x(k)$ por $h(n_0-k)$ para obtener la secuencia producto $v_{n_0}\equiv x(k)h(n_0-k)$
+  + ___Suma:___ Se suman todos los valores de la secuencia producto $v_{n_0}(k)$ para obtener el valor de la salida en $n=n_0$
+
+La idea es usar esto para no solo un $n_0$, sino que todos los infinitos $n_0$
+
+###  Propiedades de la convolución y la interconexión de sistemas LTI
+
+Primero que nada, introducimos el asterísco como la convolución
+
+$$
+y(n)=x(n)*h(n)\equiv \sum_{k=-\infty}^\infty x(k)h(n-k)
+$$
+
+Lo interesante de esto es que podemos ver que el que esto conmute, es interpreteble como si tenemos un sistema que aplica $h(n)$ y recibe $x(n)$ es lo mismo que un sistema $x(n)$ que recibe $h(n)$
+
+![](./img/img6.png)
+__Figura 6__
+
+
+
+#### Propiedades de identidad y desplazamiento
+
+El impulso unitario es el elemento identidad de la operación convolución, esto es:
+
+$$
+y(n)=x(n)*\delta(n)=x(n)
+$$
+
+Si desplazamos $\delta(n)$ una cantidad $k$ tenemos:
+
+$$
+x(n)*\delta(n-k)=y(n-k)=x(n-k)
+$$
+
+
+#### Ley conmutativa
+...Conmuta...
+
+#### Ley asociativa
+...Es asociativa...
+
+#### Interpretando...
+La interpretación de esto es que podemos componer sistemas concatenando respuestas al usar la operación de la convolución.
+
+![](./img/img7.png)
+__Figura 7__
+
+
+
+#### Ley distributiva...
+...Distribuye...
+pero lo choro es que podemos interpretar la distribución como enchufar dos sistemas en paralelo como muestra la fig 8
+
+
+![](./img/img8.png)
+__Figura 8__
