@@ -835,3 +835,115 @@ El objetivo de estas cosas es siempre, ser capaces de determinar $y(n),\quad n\g
 $$
 y(n)=y_h(n)+y_p(n)
 $$
+
+
+Donde $y_h(n)$ se conoce como la _solución homogénea_ y $y_p(n)$ como la _solución particular_
+
+#### TODO: lo que viene acá es cómo resolver esta custión pero me lo voy a saltar pq son edos y no tengo tiempo ahora, si alguien quiere terminarlo, es libre de hacerlo
+
+
+
+
+
+
+# Análisis en frecuencia de las señales continuas en el tiempo
+
+
+
+Tenemos un montón de señales exponenciales complejas armónicamente relacionadas:
+
+$$
+x(n)=\sum_{k=-\infty}^\infty c_k e^{j2\pi kF_0 t}
+$$
+
+esto es una señal periódica con periodo fundamental $T_p=1/F_0$
+
+Podemos ver que nuestras señales exponenciales con $k \in \{0, \pm 1, \pm 2, ...\}$ las vamos sumando y ponderando con el $c_k$ que corresponda, así "armando" nuestra señal $x(n)$
+
+
+Para obtener los coeficientes $c_k$ multiplicamos ambos lados por la exponencial compleja $e^{-j2\pi F_0 lt}$ e  integramos ambos lados en un periodo:
+
+$$
+\int_{t_0}^{t_0+T_p} x(t) e^{-j2\pi F_0 lt} dt = \int_{t_0}^{t_0+T_p} e^{-j2\pi F_0 lt}  \left(\sum_{k=-\infty}^\infty c_k e^{j2\pi kF_0 t}\right)dt
+$$
+
+
+Cambiando el órden de la sumatoria con el de la integral en el lado derecho tenemos:
+
+$$
+\sum_{k=-\infty}^\infty c_k \int_{t_0}^{t_0+T_p}  e^{j2\pi F_0 (k-l) t}dt
+=\sum_{k=-\infty}^\infty c_k
+\left. \left[\frac{e^{j2\pi F_0(k-l)t}}{j2\pi F_0(k-l)}\right]\right|_{t_0}^{t_o+T_p}
+$$
+
+Cuando $k\neq l$ tenemos que la expresión es 0, en cambio si $k=l$ tenemos que la exponencial es 1, así:
+
+$$
+\int_{t_0}^{t_0+T_p}dt=T_p
+$$
+Ahora retomando la integral original (porque solo llevamos calculado un lado de la igualdad) tenemos:
+
+$$
+\int_{t_0}^{t_0+T_p} x(t) e^{-j2\pi F_0 lt} dt=c_l T_p
+$$
+Porque recordemos $k=l$
+
+Así:
+
+$$
+c_l=\frac{1}{T_p}\int_{t \in T_p}x(t)e^{-j2\pi lF_0t}dt
+$$
+
+Como $t_0$ era un valor arbitrario, pusimos solo que importa integrar en un periodo.
+
+La idea es que esta cosa converja a la señal original $x(t)$, para garantizar esto, es __suficiente__ (no necesarias) que se cumplan las _condiciones de Dirichlet_:
+
+__Condiciones de Dirichlet:__
+
+  + La señal $x(t)$ tiene un número finito de discontinuidades en cualquier período.
+  + La señal $x(t)$ contiene un número finito de máximos y mínimos en cualquier período.
+  + La señal $x(t)$ es absolutamente integrable en cualquier período, esto es:
+      $$
+      \int_{t_p}|x(t)|dt<\infty
+      $$
+
+
+En resumen, tenemos que si $x(t)$ es una señal periódica y satisface las condiciones de Dirichlet, se puede representar mediante una serie de Fourier. Esto está resumido en la siguiente tabla:
+
+![](img/img10.png)
+__Figura 10:__ Tabla sacada del libro, cap 4
+
+
+Cuando $x(t)$ es __real__, los coeficientes $c_k$ y $c_{-k}$ son complejos conjugados, así
+
+$$
+\begin{aligned}
+  c_k&=|c_k| e^{j\theta_k} \\
+  c_{-k}&=|c_k| e^{-j\theta_k}
+\end{aligned}
+$$
+
+Así:
+
+$$
+x(t)=c_0+2\sum_{k=1}^\infty |c_k|\cos(2\pi k F_0t+\theta_k)
+$$
+
+donde $c_0$ es real cuando $x(t)$ es real
+
+De manera equivalente:
+
+$$
+x(t)=a_0 +\sum_{k=1}^\infty \left[a_k\cos(2\pi k F_0 t)-b_k\sin(2\pi k F_0 t)\right]
+$$
+
+Donde:
+$$
+a_0=c_0, \qquad a_k=2|c_k|\cos\theta_k,\qquad b_k=2|c_k|\sin\theta_k
+$$
+
+La serie de Fourier con todo es la de la ecuación de síntesis, estas últimas son para el caso en que la señal es real.
+
+$$
+\text{¡¡¡Con esto termina la materia para el C1 del segundo semestre del 2019, mucho éxito a tods!!!}
+$$
