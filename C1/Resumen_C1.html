@@ -787,6 +787,638 @@ x(-n)=-x(n)<br>
 
 <p>Notemos que si \(x(n)\) es impar, entonces \(x(0)=0\)</p>
 
+<p>Cualquier señal puede ser construida como una suma de una señal par y una impar.</p>
+
+<p>La función par viene dada por:</p>
+
+<p>\[<br>
+x_e(n)=\frac{1}{2}[x(n)+x(-n)]<br>
+\]</p>
+
+<p>la impar por:</p>
+
+<p>\[<br>
+x_o(n)=\frac{1}{2}[x(n)-x(-n)]<br>
+\]</p>
+
+<p>Así:</p>
+
+<p>\[<br>
+x(n)=x_e(n)+x_o(n)<br>
+\]</p>
+
+<h2 id="toc_20">Manipulaciones simples de Señales a tiempo discreto</h2>
+
+<p>Acá vamos a ver transformaciones simples de señales</p>
+
+<h4 id="toc_21">Transformación de la variable independiente (tiempo)</h4>
+
+<p>Una señal \(x(n)\) puede ser trasladada en el tiempo cambiando el argumento \(n\) por \(n-k\), donde \(k\) es un entero. Si es positivo, se traslada hacia la derecha (retardo) si es negativo hacia la izquierda (adelanto).</p>
+
+<p>Otra transformación útil es la de reflexión temporal con respecto al origen, para esto basta con reemplazar el argumento \(n\) por \(-n\)</p>
+
+<p><strong>Es importante notar que estas operaciones no son conmutativas entre sí.</strong></p>
+
+<h3 id="toc_22">Sistemas en tiempo discreto</h3>
+
+<p>Un sistema discreto es uno que recibe una señal discreta y aplica una operación de tal manera que la salida es también una señal discreta, llamada salida o respuesta del sistema.</p>
+
+<p><img src="./img/img3.png" alt=""><br>
+<strong>Figura 3</strong>: Representación de un sistema discreto</p>
+
+<p>Cuando pasamos una señal \(x(n)\) por un sistema, decimos que aplicamos una transformación sobre la entrada para producir la salida \(y(n)\). Esta relación se expresa matemáticamente así:</p>
+
+<p>\[<br>
+y(n)\equiv \mathcal{T}[x(n)]<br>
+\]</p>
+
+<p>donde \(\mathcal{T}\) representa la transformación</p>
+
+<p>Hay varias maneras de describir las características de un sistema de operaciones aplicadas a \(x(n)\) para producir \(y(n)\) Partamos con la descripción entrada-salida.</p>
+
+<h2 id="toc_23">Descripción entrada-salida de un sistema</h2>
+
+<p>En este caso el sistema se tomó como <em>caja negra</em></p>
+
+<p>\[<br>
+x(n) \xrightarrow[\qquad]{\mathcal{T}}y(n)<br>
+\]</p>
+
+<h3 id="toc_24">Clasificación de sistemas a tiempo discreto</h3>
+
+<p>Tanto en el diseño como en el análisis de sistemas, nos interesa ver sus propiedades. Para poder hablar de propiedades de un sistema, estas tienen que satisfacerse para cualquier entrada que le pongamos, de otra manera no podemos hablar de que el sistema posea efectivamente la propiedad.</p>
+
+<h4 id="toc_25">Sistemas estáticos versus sistemas dinámicos</h4>
+
+<p>Un sistema se dice <em>estático</em> o <em>sin memoria</em> si la salida del sistema depende a lo más, del input que se está procesando en ese momento dado, esto es, que no está ni ahí con lo que pase antes o después, por eso sin memoria, como mi abuelita. En cualquier otro caso, se dice que el sistema es <em>dinámico</em> o que <em>tiene memoria</em>.<br>
+Si la salida de un sistema en un tiempo \(n\) está totalmente determinada por las muestras de entrada den el intervalo desde \(n-N\) a \(n\) (\(N\geq0\)) Se dice que el sistema tiene duración de memoria \(N\), si \(N=0\) el sistema es estático. Si \(N\) es finito, el sistema tiene memoria finita, si \(N\) es infinito ---diverge---<br>
+, el sistema tiene memoria infinita.</p>
+
+<p>Los sistemas estáticos o sin memoria son descritos en general de la siguiente manera:</p>
+
+<p>\[<br>
+y(n)=\mathcal{T}[x(n),n]<br>
+\]</p>
+
+<h4 id="toc_26">Sistemas invariantes en el tiempo versus sistemas variantes en el tiempo</h4>
+
+<p>Podemos subdividir los sistemas en sistemas variantes e invariantes en el tiempo. Un sistema se dice invariante en el tiempo si su característica entrada-salida no cambia en el tiempo.</p>
+
+<blockquote>
+<p>Definición: Un sistema relajado \(\mathcal{T}\) es <em>invariante en el tiempo</em> ssi:<br>
+\[<br>
+x(n)\xrightarrow[\quad]{\mathcal{T}}y(n) \implies x(n-k)\xrightarrow[\quad]{\mathcal{T}}y(n-k); \quad \forall \quad x(n),k<br>
+\]</p>
+</blockquote>
+
+<p>Esta es la prueba que hay que aplicar para saber si un sistema es invariante en el tiempo. Primero excitamos un sistema con una entrada arbitraria y después usamos el operador de desplazamiento temporal.</p>
+
+<p>\[<br>
+y(n,k)=\mathcal{T}[x(n-k)]<br>
+\]<br>
+Si \(y(n,k)=y(n-k)\) para cualquier valor de \(k\), entonces el sistema <strong>es invariante en el tiempo</strong>.</p>
+
+<h4 id="toc_27">Sistemas lineales versus sistemas no-lineales</h4>
+
+<p>Un sistema lineal es aquel que satisface el <em>principio de superposición</em></p>
+
+<blockquote>
+<p>Definición: Un sistema es lineal ssi:<br>
+\[<br>
+\mathcal{T}[a_1x_1(n)+a_2x_2(n)]=a_1\mathcal{T}[x_1(n)]+a_2\mathcal{T}[x_2(n)]<br>
+\]<br>
+Para cualquiera entradas y constantes \(x_i(n), a_i\) respectivamente.</p>
+</blockquote>
+
+<h4 id="toc_28">Sistemas causales versus sistemas no-causales</h4>
+
+<blockquote>
+<p>Definición: Un sistema se dice <em>causal</em> si la salida del sistema para cualquier tiempo \(n\) depende solo de entradas presentes y/o pasadas, pero no de futuras. Matemáticamente:<br>
+\[<br>
+y(n)=F[x(n),x(n-1),x(n-2),...]<br>
+\]<br>
+donde \(F[\cdot]\) es una función arbitraria.</p>
+</blockquote>
+
+<p>Si un sistema no cumple con esta condición, se dice que es <em>no-causal</em></p>
+
+<h4 id="toc_29">Sistema estable versus sistema inestable</h4>
+
+<p>Kerimoh sistemas estables porque en la práctica son más útiles</p>
+
+<blockquote>
+<p>Definición: Un sistema se dice bounded input–bounded output (BIBO) estable ssi toda entrada acotada produce una salida acotada. Matemáticamente:<br>
+\[<br>
+|x(n)|\leq M_x&lt;\infty, \qquad |y(n)|\leq M_y&lt;\infty, \qquad \forall \quad n<br>
+\]</p>
+</blockquote>
+
+<h3 id="toc_30">Interconexión de sistemas en tiempo discreto</h3>
+
+<p>Los sistemas discretos en el tiempo pueden ser interconectados para crear sistemas más complejos, grandotes y fortotototes. Hay dos maneras básicas de conectarlos: en cascada (serie) o en paralelo.</p>
+
+<p><img src="./img/img4.png" alt=""><br>
+<strong>Figura 4:</strong> Ilustración de dos sistemas conectados en serie y en paralelo.</p>
+
+<p>En el caso cascada tenemos<br>
+\[<br>
+y_1(n)=\mathcal{T}_1[x(n)]<br>
+\]<br>
+y la salida del segundo sistema es:</p>
+
+<p>\[<br>
+\begin{aligned}<br>
+  y(n)&amp;=\mathcal{T}_2[y_1(n)]\\<br>
+  &amp;=\mathcal{T}_2[\mathcal{T}_1[x(n)]]<br>
+\end{aligned}<br>
+\]</p>
+
+<p>Notamos que los sistemas \(\mathcal{T}_1\) y \(\mathcal{T}_1\) pueden ser combinados de la siguiente manera:</p>
+
+<p>\[<br>
+\mathcal{T}_c \equiv \mathcal{T}_2\mathcal{T}_1<br>
+\]</p>
+
+<p>En general, el orden en que aplicamos los operadores es importante y</p>
+
+<p>\[<br>
+\mathcal{T}_1\mathcal{T}_2\neq \mathcal{T}_2\mathcal{T}_1<br>
+\]<br>
+pero si nuestros sistemas son lineales e invariantes en el tiempo, entonces \(\mathcal{T}_c\) es invariante y ahí sí \(\mathcal{T}_1\mathcal{T}_2 = \mathcal{T}_2\mathcal{T}_1\)</p>
+
+<p>Para conexiones paralelas tenemos la misma idea:</p>
+
+<p>\[<br>
+\begin{aligned}<br>
+  y_3(n)&amp;=y_1(n)+y_2(n)\\<br>
+  &amp;=\mathcal{T}_1[x(n)]+\mathcal{T}_2[x(n)]\\<br>
+  &amp;=(\mathcal{T}_1+\mathcal{T}_2)[x(n)]\\<br>
+  &amp;=\mathcal{T}_p[x(n)]<br>
+\end{aligned}<br>
+\]</p>
+
+<p>Donde \(\mathcal{T}_p=\mathcal{T}_1+\mathcal{T}_2\)</p>
+
+<h2 id="toc_31">Análisis de señales a tiempo discreto en sistemas LTI</h2>
+
+<p>La idea de esta sección es mostrar que los sistemas LTI están caracterizados por su respuesta a una muestra unitaria. De igual manera, vamos a mostrar que cualquier señal discreta se puede descomponer como una suma ponderada de muchas unidades. La forma general que relaciona la respuesta de impulso unitario (muestra unitaria) y la salida de un sistema a una entrada arbitraria, la suma de convolución, también será mostrada en esta sección. Así vamos a poder saber la salida de cualquier sistema con solo conocer la convolución y cómo se relaciona con el impulso unitario.</p>
+
+<h3 id="toc_32">Técnicas para el análisis de sistemas lineales</h3>
+
+<p>Hay dos métodos básicos para analizar el comportamiento o respuesta de un sistema lineal a una determinada entrada. Un método está basado en la solución directa de la relación entrada-salida del sistema, que en general, tiene la forma:</p>
+
+<p>\[<br>
+y(n)=F[y(n-1),y(n-2),...,y(n-N);x(n),x(n-1),...,x(n-M)]<br>
+\]</p>
+
+<p>donde \(F[\cdot]\) es una función de las cantidades entre los paréntesis. En particular, para un sistema LTI, veremos que la relación entrada-salida está dada por:</p>
+
+<p>\[<br>
+y(n)=-\sum_{k=1}^Na_ky(n-k)+\sum_{k=0}^Mb_kx(n-k)<br>
+\]</p>
+
+<p>donde \(\{a_k\}\) y \(\{b_k\}\) son parámetros constantes que especifican el sistema y son independientes de \(x(n)\) e \(y(n)\). La relación de entrada-salida se llama ecuación de diferencias y representa una manera de caracterizar el comportamiento de un sistema a tiempo discreto LTI.</p>
+
+<h4 id="toc_33">Segundo método:</h4>
+
+<p>Supongamos que la señal de entrada \(x(n)\) se descompuso en una suma ponderada de señales elementales \(\{x_k(n)\}\) de la siguiente manera:</p>
+
+<p>\[<br>
+x(n)=\sum_k c_k x_k(n)<br>
+\]</p>
+
+<p>donde \(\{c_k\}\) son un conjunto de amplitudes en la descomposición de la señal \(x(n)\). Ahora supongamos que la respuesta de un componente de señal \(x_k(n)\) es \(y_k(n)\). Así:</p>
+
+<p>\[<br>
+y_k(n)\equiv \mathcal{T}[x_k(n)]<br>
+\]</p>
+
+<p>Asumiendo que el sistema está relajado y la respuesta a \(c_kx_k(n)\) es \(c_ky_k(n)\), tenemos:</p>
+
+<p>\[<br>
+\begin{aligned}<br>
+y(n)&amp;=\mathcal{T}[x(n)]=\mathcal{T}\left[\sum_kc_kx_k(n)\right]\\<br>
+&amp;=\sum_kc_k\mathcal{T}[x_k(n)]\\<br>
+&amp;=\sum_kc_ky_k(n)<br>
+\end{aligned}<br>
+\]</p>
+
+<p>La base a escoger como nuestras <em>señales fundamentales</em> depende mucho de la naturaleza de las señales de entrada que estemos considerando. Por ejemplo si la entrada es periódica, una buena base serían exponenciales complejas:</p>
+
+<p>\[<br>
+x_k(n)=e^{j\omega_k n}, \qquad k=0,1,2,...,N-1<br>
+\]<br>
+donde las frecuencias \(\{\omega_k\}\) están relacionadas de manera armónica, esto es:</p>
+
+<p>\[<br>
+\omega_k\left(\frac{2\pi}{N}\right)k, \qquad k=0,1,2,...,N-1<br>
+\]</p>
+
+<p>La frecuencia \(2\pi/N\) es la <em>frecuencia funcdamental</em> y todos los componentes de más alta frecuencia de la base son multiplos enteros de esta.</p>
+
+<h3 id="toc_34">Descomponiendo una señal en tiempo discreto a impulsos.</h3>
+
+<p>Supongamos que tenemos una señal arbitraria $x(n) que queremos descomponer en una suma de impulsos unitarios. La descomposición matemáticamente se ve como sigue:</p>
+
+<p>\[<br>
+x_k(n)=\delta(n-k)<br>
+\]</p>
+
+<p>donde \(k\) representa el atraso de cada impulso individualmente.</p>
+
+<p>Ahora supongamos que multiplicamos \(x(n)\) con \(\delta(n-k)\). Como el impulso es 0 en todos lados menos en \(n=k\) donde vale 1, el resultado es otro impulso solo que puede no valer 1, sino que vale \(x(k)\):</p>
+
+<p>\[<br>
+x(n)\delta(n-k)=x(k)\delta(n-k)<br>
+\]<br>
+si ahora repetimos lo mismo pero con \(m\) y con \(m\neq k\) podemos repetir lo mismo. Gráficamente, tenemos:</p>
+
+<p><img src="img/img5.png" alt=""><br>
+<strong>Figura 5:</strong> Representación gráfica de la descomposición de una señal en impulsos.</p>
+
+<p>Así:</p>
+
+<p>\[<br>
+x(n)=\sum_{k=-\infty}^\infty x(k)\delta(n-k)<br>
+\]</p>
+
+<h3 id="toc_35">Respuesta de sistemas LTI a entradas arbitrarias: La suma de convolución</h3>
+
+<p>Denotemos la respuesta a un componente de impulso como \(y(n,k)\), pero como es la respuesta al impulso en \(n=k\), de damos una letra especial \(h(n,k)\)</p>
+
+<p>\[<br>
+y(n,k)\equiv h(n,k) = \mathcal{T}[\delta(n-k)]<br>
+\]</p>
+
+<p>Pero podemos usar esto para una entrada arbitraria de la manera que vimos antes.</p>
+
+<p>\[<br>
+x(n)=\sum_{k=-\infty}^\infty x(n)\delta(n-k)<br>
+\]</p>
+
+<p>así tenemos :</p>
+
+<p>\[<br>
+\begin{aligned}<br>
+y(n) &amp;= \mathcal{T}[x(n)]=\mathcal{T}\left[\sum_{k=-\infty}^\infty x(k)\delta(n-k)\right]\\<br>
+&amp;=\sum_{k=-\infty}^\infty x(k)\mathcal{T}[\delta(n-k)]\\<br>
+&amp;=\sum_{k=-\infty}^\infty x(k)h(n,k)<br>
+\end{aligned}<br>
+\]</p>
+
+<p>Notemos que para lo anterior, no hubo que aplicar invarianza en el tiempo, de hecho si asumimos que nuestra señal es LTI, la cosa se pone más izipizi:</p>
+
+<p>\[<br>
+h(n)\equiv \mathcal{T}[\delta(n)]<br>
+\]</p>
+
+<p>aplicando invarianza en el tiempo:</p>
+
+<p>\[<br>
+h(n-k)= \mathcal{T}[\delta(n-k)]<br>
+\]</p>
+
+<p>Así:</p>
+
+<p>\[<br>
+y(n) = \sum_{k=-\infty}^\infty x(k)h(n-k)<br>
+\]</p>
+
+<p>Así, vemos que un sistema LTI está caracterizado por una sola función \(h(n)\) que es la <em>respuesta al impulso</em>. La relación de la ecuación anterior es la llamada <strong>suma de convolución</strong></p>
+
+<p><strong>Receta:</strong> Para calcular la salida de convolución hacemos lo que sigue.</p>
+
+<p>Supongamos que queremos calcular la salida de un sistema para un determinado tiempo \(n=n_0\). La respuesta, como vimos, está dada por:</p>
+
+<p>\[<br>
+y(n_0)=\sum_{k=-\infty}^\infty x(k)h(n_0-k)<br>
+\]</p>
+
+<p>Los pasos son:</p>
+
+<ul>
+<li><strong><em>Reflexión:</em></strong> Se refleja \(h(k)\) respecto a \(k=0\) para obtener \(h(-k)\)</li>
+<li><strong><em>Desplazamiento:</em></strong> Se desplaza \(h(-k)\) una cantidad \(n_0\) hacia la derecha si \(n_0\) es positivo para obtener $h(n_0-k)</li>
+<li><strong><em>Multiplicación:</em></strong> Se multiplica \(x(k)\) por \(h(n_0-k)\) para obtener la secuencia producto \(v_{n_0}\equiv x(k)h(n_0-k)\)</li>
+<li><strong><em>Suma:</em></strong> Se suman todos los valores de la secuencia producto \(v_{n_0}(k)\) para obtener el valor de la salida en \(n=n_0\)</li>
+</ul>
+
+<p>La idea es usar esto para no solo un \(n_0\), sino que todos los infinitos \(n_0\)</p>
+
+<h3 id="toc_36">Propiedades de la convolución y la interconexión de sistemas LTI</h3>
+
+<p>Primero que nada, introducimos el asterísco como la convolución</p>
+
+<p>\[<br>
+y(n)=x(n)*h(n)\equiv \sum_{k=-\infty}^\infty x(k)h(n-k)<br>
+\]</p>
+
+<p>Lo interesante de esto es que podemos ver que el que esto conmute, es interpreteble como si tenemos un sistema que aplica \(h(n)\) y recibe \(x(n)\) es lo mismo que un sistema \(x(n)\) que recibe \(h(n)\)</p>
+
+<p><img src="./img/img6.png" alt=""><br>
+<strong>Figura 6</strong></p>
+
+<h4 id="toc_37">Propiedades de identidad y desplazamiento</h4>
+
+<p>El impulso unitario es el elemento identidad de la operación convolución, esto es:</p>
+
+<p>\[<br>
+y(n)=x(n)*\delta(n)=x(n)<br>
+\]</p>
+
+<p>Si desplazamos \(\delta(n)\) una cantidad \(k\) tenemos:</p>
+
+<p>\[<br>
+x(n)*\delta(n-k)=y(n-k)=x(n-k)<br>
+\]</p>
+
+<h4 id="toc_38">Ley conmutativa</h4>
+
+<p>...Conmuta...</p>
+
+<h4 id="toc_39">Ley asociativa</h4>
+
+<p>...Es asociativa...</p>
+
+<h4 id="toc_40">Interpretando...</h4>
+
+<p>La interpretación de esto es que podemos componer sistemas concatenando respuestas al usar la operación de la convolución.</p>
+
+<p><img src="./img/img7.png" alt=""><br>
+<strong>Figura 7</strong></p>
+
+<h4 id="toc_41">Ley distributiva...</h4>
+
+<p>...Distribuye...<br>
+pero lo choro es que podemos interpretar la distribución como enchufar dos sistemas en paralelo como muestra la fig 8</p>
+
+<p><img src="./img/img8.png" alt=""><br>
+<strong>Figura 8</strong></p>
+
+<h3 id="toc_42">Estabilidad de los sistemas lineales invariantes en el tiempo</h3>
+
+<p>Si \(x(n)\) es acotada, existe una constante tal que:</p>
+
+<p>\[<br>
+|x(n)|\leq M_x&lt;\infty<br>
+\]<br>
+De forma similar, si la salida está acotada, tenemos un \(M_y\) tal que:</p>
+
+<p>\[<br>
+|y(n)|\leq M_y&lt;\infty<br>
+\]</p>
+
+<p>Vamos a ver qué pasa con señales en un sistema, para esto vamos a usar la fórmula de convolución</p>
+
+<p>\[<br>
+y(n)=\sum_{k=-\infty}^\infty h(k)x(n-k)<br>
+\]</p>
+
+<p>si tomamos el valor absoluto, tenemos:</p>
+
+<p>\[<br>
+|y(n)|=\left|\sum_{k=-\infty}^\infty h(k)x(n-k)\right|<br>
+\]</p>
+
+<p>Así:</p>
+
+<p>\[<br>
+|y(n)|\leq \sum_{k=-\infty}^\infty |h(k)||x(n-k)|<br>
+\]</p>
+
+<p>Si la entrada está acotada de tal manera que \(|x(n)|\leq M_x\)</p>
+
+<p>\[<br>
+|y(n)|\leq M_x \sum_{k=-\infty}^\infty |h(k)|<br>
+\]</p>
+
+<p>Vemos así que la salida está acotada si la respuesta al impulso satisface:</p>
+
+<p>\[<br>
+S_h \equiv \sum_{k=-\infty}^\infty |h(k)|&lt;\infty<br>
+\]</p>
+
+<p>así: <em>un sistema lineal invariante en el tiempo es estable si su respuesta al impulso es absolutamente sumable.</em> Si \(S_h=\infty\) (me da cosa escribir eso pero no me quedó otra, el libro lo hace así y no supe hacerle el quite uwu), existe una entrada acotada para la cual la salida no es acotada.</p>
+
+<h2 id="toc_43">Sistemas discretos en el tiempo descritos mediante ecuaciones en diferencias</h2>
+
+<p>Hasta ahora todos los sistemas vistos están caracterizados por su respuesta al impulso \(h(n)\) de la siguiente manera:</p>
+
+<p>\[<br>
+y(n)=\sum_{k=-\infty}^\infty h(k)x(n-k)<br>
+\]</p>
+
+<p>En general si el sistema involucra un numero finito de datos (sistemas FIR <em>finite impulse response</em>) no hay rollo y la convolución se puede usar porque hay un número finito de operaciones involucradas para encontrar la respuesta de un sistema. En cambio, si el sistema es IIR (<em>infinite impulse response</em>) fuimos buenos. Entonces... ¿habrá otra manera de calcular sus respuestas? pos sí, se puede, con ecuaciones en diferencias. esto es muy útil para muchas cosas, como filtros digitales y modelamiento de sistemas físicos.</p>
+
+<h3 id="toc_44">Sistemas discretos en el tiempo recursivos y no recursivos</h3>
+
+<p>Embeces queremos modelar cosas no nos basta con los valores presentes de la señal, ni con las entradas pasadas, sino que también nos pueden importar señales pasadas, por ejemplo:</p>
+
+<blockquote>
+<p>Supongamos que queremos calcular la media acumulada de una señal \(x(n)\) en el intervalo \(0 \leq k \leq n\), definida como:<br>
+\[<br>
+y(n)=\frac{1}{n+1}\sum_{k=0}^n x(k), \quad n=0,1,...<br>
+\]<br>
+<em>Fuente: ejemplo sacado textual del libro</em></p>
+</blockquote>
+
+<p>Podemos ver que este problema nos pide ir guardando todas las entradas, gastando así mucha memoria al momento de implementar esto. Otra manera quizá más inteligente, es guardar solo el valor anterior, esto es \(y(n-1)\) y así nos ahorramos mucha memoria. Para esto hay que reordenar la expresión anterior:</p>
+
+<p>\[<br>
+\begin{aligned}<br>
+  (n+1)y(n)&amp;=\sum_{k=0}^{n-1}x(k)+x(n)\\<br>
+  &amp;=ny(n-1)+x(n)\\<br>
+  &amp; \\<br>
+  \implies y(n)&amp;=\frac{n}{n+1}y(n-1)+\frac{1}{n+1}x(n)<br>
+\end{aligned}<br>
+\]</p>
+
+<p>Esto es, un sistema recursivo.</p>
+
+<p>Ahora tenemos que un sistema causal se puede representar, como vimos en su momento, como:</p>
+
+<p>\[<br>
+y(n)=F[y(n),y(n-1),...,y(n-N),x(n),x(n-1),...,x(n-M)]<br>
+\]</p>
+
+<p>Donde \(F[\cdot]\) indica la función de sus argumentos.</p>
+
+<h3 id="toc_45">Sistemas lineales invariantes en el tiempo caracterizados por ecuaciones en diferencias de coeficientes constantes</h3>
+
+<p>Antes vimos la ecuación para calcular la media acumulada, esa ecuación era <em>variante en el tiempo</em> pq tenía coeficientes que variaban en el tiempo &rarr; no es una misma función de transferencia para todo \(n\).</p>
+
+<p>Ahora, si tenemos constantes, entonces sí es invariante.</p>
+
+<p>Ejemplo:</p>
+
+<p>\[<br>
+y(n)=ay(n-1)+x(n), \quad a=\text{constante}<br>
+\]</p>
+
+<p>Asumamos que hay una condición inicial \(y(-1)\), así nuestra pega es resolver un sistema con una señal de entrada \(x(n)\) dado por:</p>
+
+<p><img src="./img/img9.png" alt=""><br>
+<strong>Figura 9:</strong> varias iteraciones del sistema</p>
+
+<p>De manera compacta tenemos:</p>
+
+<p>\[<br>
+y(n)=a{n+1}y(-1)+\sum_{k=0}^n a^k x(n-k), \quad n \geq 0<br>
+\]</p>
+
+<p>Tenemos que la respuesta del sistema, depende en primer lugar de una condición inicial y después de la señal que introducimos.</p>
+
+<p>Se die que un sistema recursivo está en reposo si se inicia con condiciones iniciales nulas. A la &quot;memoria&quot; actual del sistema, le llamamos estado, y como es condiciones iniciales 0, le llamamos a la raspuesta con \(y(-1)=0\) <em>respuesta para al estado cero</em> y se designa \(y_{\text{zs}}(n)\)</p>
+
+<p>Así la respuesta al estado cero del sistema anterior está dada por</p>
+
+<p>\[<br>
+y(n)=\sum_{k=0}^n a^k x(n-k), \quad n \geq 0<br>
+\]</p>
+
+<p>notemos que esto es una operación de convolución entre la señal de entrada y la respuesta al impulso:<br>
+\[<br>
+h(n)=a^nu(n)<br>
+\]</p>
+
+<p>Ahora supongamos el otro caso, donde la condicion inicial es \(y(-1)\neq0\) pero la señal de entrada es \(x(n)=0\), esta es la llamada <em>respuesta a entrada cero</em>, en este caso tenemos:</p>
+
+<p>\[<br>
+y_{\text{zi}}(n)=a^{n+1}y(-1), \quad n\geq0<br>
+\]</p>
+
+<p>vemos que este sistema no está en reposo en el sentido en que produce salida sin haber sido excitado por ninguna señal. La respuesta a la entrada cero se debe a la memoria del sistema.</p>
+
+<p>Como vimos, la respuesta a entrada cero, no depende de la entrada, es por esto que es propia del sistema en el sentido que es la respuesta &quot;natural&quot; del sistema.</p>
+
+<p>En general, la respuesta completa de un sistema se puede representar como:</p>
+
+<p>\[<br>
+y(n)=y_{\text{zi}}(n)+y_{\text{zs}}(n)<br>
+\]</p>
+
+<h4 id="toc_46">Revisemos la linealidad de un sistema</h4>
+
+<p>Un sistema es lineal si cumple con:</p>
+
+<ul>
+<li>La respuesta total es igual a la suma de las respuestas a la entrada nula y en estado cero</li>
+<li>El principio de superposición se aplica a la respuesta para el estado nulo (<em>lineal para el estado nulo</em>)</li>
+<li>El principio de superposición se aplica a la respuesta a la entrada nula (<em>lineal para la entrada nula</em>)</li>
+</ul>
+
+<h3 id="toc_47">Solución de las ecuaciones en diferencias lineales de coeficientes constantes</h3>
+
+<p>Acá vamos a mostrar el <em>método directo</em> para la resolución de estas ecuaciones.</p>
+
+<p>El objetivo de estas cosas es siempre, ser capaces de determinar \(y(n),\quad n\geq0\) del sistema, dada una entrada \(x(n),\quad n\geq0\). Este método supone que la solución general es la suma de dos partes:</p>
+
+<p>\[<br>
+y(n)=y_h(n)+y_p(n)<br>
+\]</p>
+
+<p>Donde \(y_h(n)\) se conoce como la <em>solución homogénea</em> y \(y_p(n)\) como la <em>solución particular</em></p>
+
+<h4 id="toc_48">TODO: lo que viene acá es cómo resolver esta custión pero me lo voy a saltar pq son edos y no tengo tiempo ahora, si alguien quiere terminarlo, es libre de hacerlo</h4>
+
+<h1 id="toc_49">Análisis en frecuencia de las señales continuas en el tiempo</h1>
+
+<p>Tenemos un montón de señales exponenciales complejas armónicamente relacionadas:</p>
+
+<p>\[<br>
+x(n)=\sum_{k=-\infty}^\infty c_k e^{j2\pi kF_0 t}<br>
+\]</p>
+
+<p>esto es una señal periódica con periodo fundamental \(T_p=1/F_0\)</p>
+
+<p>Podemos ver que nuestras señales exponenciales con \(k \in \{0, \pm 1, \pm 2, ...\}\) las vamos sumando y ponderando con el \(c_k\) que corresponda, así &quot;armando&quot; nuestra señal \(x(n)\)</p>
+
+<p>Para obtener los coeficientes \(c_k\) multiplicamos ambos lados por la exponencial compleja \(e^{-j2\pi F_0 lt}\) e  integramos ambos lados en un periodo:</p>
+
+<p>\[<br>
+\int_{t_0}^{t_0+T_p} x(t) e^{-j2\pi F_0 lt} dt = \int_{t_0}^{t_0+T_p} e^{-j2\pi F_0 lt}  \left(\sum_{k=-\infty}^\infty c_k e^{j2\pi kF_0 t}\right)dt<br>
+\]</p>
+
+<p>Cambiando el órden de la sumatoria con el de la integral en el lado derecho tenemos:</p>
+
+<p>\[<br>
+\sum_{k=-\infty}^\infty c_k \int_{t_0}^{t_0+T_p}  e^{j2\pi F_0 (k-l) t}dt<br>
+=\sum_{k=-\infty}^\infty c_k<br>
+\left. \left[\frac{e^{j2\pi F_0(k-l)t}}{j2\pi F_0(k-l)}\right]\right|_{t_0}^{t_o+T_p}<br>
+\]</p>
+
+<p>Cuando \(k\neq l\) tenemos que la expresión es 0, en cambio si \(k=l\) tenemos que la exponencial es 1, así:</p>
+
+<p>\[<br>
+\int_{t_0}^{t_0+T_p}dt=T_p<br>
+\]<br>
+Ahora retomando la integral original (porque solo llevamos calculado un lado de la igualdad) tenemos:</p>
+
+<p>\[<br>
+\int_{t_0}^{t_0+T_p} x(t) e^{-j2\pi F_0 lt} dt=c_l T_p<br>
+\]<br>
+Porque recordemos \(k=l\)</p>
+
+<p>Así:</p>
+
+<p>\[<br>
+c_l=\frac{1}{T_p}\int_{t \in T_p}x(t)e^{-j2\pi lF_0t}dt<br>
+\]</p>
+
+<p>Como \(t_0\) era un valor arbitrario, pusimos solo que importa integrar en un periodo.</p>
+
+<p>La idea es que esta cosa converja a la señal original \(x(t)\), para garantizar esto, es <strong>suficiente</strong> (no necesarias) que se cumplan las <em>condiciones de Dirichlet</em>:</p>
+
+<p><strong>Condiciones de Dirichlet:</strong></p>
+
+<ul>
+<li>La señal \(x(t)\) tiene un número finito de discontinuidades en cualquier período.</li>
+<li>La señal \(x(t)\) contiene un número finito de máximos y mínimos en cualquier período.</li>
+<li>La señal \(x(t)\) es absolutamente integrable en cualquier período, esto es:
+  \[
+  \int_{t_p}|x(t)|dt&lt;\infty
+  \]</li>
+</ul>
+
+<p>En resumen, tenemos que si \(x(t)\) es una señal periódica y satisface las condiciones de Dirichlet, se puede representar mediante una serie de Fourier. Esto está resumido en la siguiente tabla:</p>
+
+<p><img src="img/img10.png" alt=""><br>
+<strong>Figura 10:</strong> Tabla sacada del libro, cap 4</p>
+
+<p>Cuando \(x(t)\) es <strong>real</strong>, los coeficientes \(c_k\) y \(c_{-k}\) son complejos conjugados, así</p>
+
+<p>\[<br>
+\begin{aligned}<br>
+  c_k&amp;=|c_k| e^{j\theta_k} \\<br>
+  c_{-k}&amp;=|c_k| e^{-j\theta_k}<br>
+\end{aligned}<br>
+\]</p>
+
+<p>Así:</p>
+
+<p>\[<br>
+x(t)=c_0+2\sum_{k=1}^\infty |c_k|\cos(2\pi k F_0t+\theta_k)<br>
+\]</p>
+
+<p>donde \(c_0\) es real cuando \(x(t)\) es real</p>
+
+<p>De manera equivalente:</p>
+
+<p>\[<br>
+x(t)=a_0 +\sum_{k=1}^\infty \left[a_k\cos(2\pi k F_0 t)-b_k\sin(2\pi k F_0 t)\right]<br>
+\]</p>
+
+<p>Donde:<br>
+\[<br>
+a_0=c_0, \qquad a_k=2|c_k|\cos\theta_k,\qquad b_k=2|c_k|\sin\theta_k<br>
+\]</p>
+
+<p>La serie de Fourier con todo es la de la ecuación de síntesis, estas últimas son para el caso en que la señal es real.</p>
+
+<p>\[<br>
+\text{¡¡¡Con esto termina la materia para el C1 del segundo semestre del 2019, mucho éxito a tods!!!}<br>
+\]</p>
+
 
 
 <script type="text/javascript">
