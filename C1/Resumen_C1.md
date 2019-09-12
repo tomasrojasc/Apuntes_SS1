@@ -661,3 +661,47 @@ pero lo choro es que podemos interpretar la distribución como enchufar dos sist
 
 ![](./img/img8.png)
 __Figura 8__
+
+## Sistemas discretos en el tiempo descritos mediante ecuaciones en diferencias
+
+Hasta ahora todos los sistemas vistos están caracterizados por su respuesta al impulso $h(n)$ de la siguiente manera:
+
+$$
+y(n)=\sum_{k=-\infty}^\infty h(k)x(n-k)
+$$
+
+En general si el sistema involucra un numero finito de datos (sistemas FIR _finite impulse response_) no hay rollo y la convolución se puede usar porque hay un número finito de operaciones involucradas para encontrar la respuesta de un sistema. En cambio, si el sistema es IIR (_infinite impulse response_) fuimos buenos. Entonces... ¿habrá otra manera de calcular sus respuestas? pos sí, se puede, con ecuaciones en diferencias. esto es muy útil para muchas cosas, como filtros digitales y modelamiento de sistemas físicos.
+
+### Sistemas discretos en el tiempo recursivos y no recursivos
+
+Embeces queremos modelar cosas no nos basta con los valores presentes de la señal, ni con las entradas pasadas, sino que también nos pueden importar señales pasadas, por ejemplo:
+
+> Supongamos que queremos calcular la media acumulada de una señal $x(n)$ en el intervalo $0 \leq k \leq n$, definida como:
+> $$
+> y(n)=\frac{1}{n+1}\sum_{k=0}^n x(k), \quad n=0,1,...
+> $$
+> _Fuente: ejemplo sacado textual del libro_
+
+Podemos ver que este problema nos pide ir guardando todas las entradas, gastando así mucha memoria al momento de implementar esto. Otra manera quizá más inteligente, es guardar solo el valor anterior, esto es $y(n-1)$ y así nos ahorramos mucha memoria. Para esto hay que reordenar la expresión anterior:
+
+$$
+\begin{aligned}
+  (n+1)y(n)&=\sum_{k=0}^{n-1}x(k)+x(n)\\
+  &=ny(n-1)+x(n)\\
+  & \\
+  \implies y(n)&=\frac{n}{n+1}y(n-1)+\frac{1}{n+1}x(n)
+\end{aligned}
+$$
+
+Esto es, un sistema recursivo.
+
+Ahora tenemos que un sistema causal se puede representar, como vimos en su momento, como:
+
+$$
+y(n)=F[y(n),y(n-1),...,y(n-N),x(n),x(n-1),...,x(n-M)]
+$$
+
+Donde $F[\cdot]$ indica la función de sus argumentos.
+
+
+### Sistemas lineales invariantes en el tiempo caracterizados por ecuaciones en diferencias de coeficientes constantes
