@@ -662,6 +662,57 @@ pero lo choro es que podemos interpretar la distribución como enchufar dos sist
 ![](./img/img8.png)
 __Figura 8__
 
+
+### Estabilidad de los sistemas lineales invariantes en el tiempo
+
+Si $x(n)$ es acotada, existe una constante tal que:
+
+$$
+|x(n)|\leq M_x<\infty
+$$
+De forma similar, si la salida está acotada, tenemos un $M_y$ tal que:
+
+$$
+|y(n)|\leq M_y<\infty
+$$
+
+Vamos a ver qué pasa con señales en un sistema, para esto vamos a usar la fórmula de convolución
+
+$$
+y(n)=\sum_{k=-\infty}^\infty h(k)x(n-k)
+$$
+
+si tomamos el valor absoluto, tenemos:
+
+$$
+|y(n)|=\left|\sum_{k=-\infty}^\infty h(k)x(n-k)\right|
+$$
+
+
+Así:
+
+
+$$
+|y(n)|\leq \sum_{k=-\infty}^\infty |h(k)||x(n-k)|
+$$
+
+
+Si la entrada está acotada de tal manera que $|x(n)|\leq M_x$
+
+$$
+|y(n)|\leq M_x \sum_{k=-\infty}^\infty |h(k)|
+$$
+
+
+Vemos así que la salida está acotada si la respuesta al impulso satisface:
+
+$$
+S_h \equiv \sum_{k=-\infty}^\infty |h(k)|<\infty
+$$
+
+así: _un sistema lineal invariante en el tiempo es estable si su respuesta al impulso es absolutamente sumable._ Si $S_h=\infty$ (me da cosa escribir eso pero no me quedó otra, el libro lo hace así y no supe hacerle el quite uwu), existe una entrada acotada para la cual la salida no es acotada.
+
+
 ## Sistemas discretos en el tiempo descritos mediante ecuaciones en diferencias
 
 Hasta ahora todos los sistemas vistos están caracterizados por su respuesta al impulso $h(n)$ de la siguiente manera:
@@ -777,3 +828,10 @@ Un sistema es lineal si cumple con:
 ### Solución de las ecuaciones en diferencias lineales de coeficientes constantes
 
 Acá vamos a mostrar el _método directo_ para la resolución de estas ecuaciones.
+
+
+El objetivo de estas cosas es siempre, ser capaces de determinar $y(n),\quad n\geq0$ del sistema, dada una entrada $x(n),\quad n\geq0$. Este método supone que la solución general es la suma de dos partes:
+
+$$
+y(n)=y_h(n)+y_p(n)
+$$
