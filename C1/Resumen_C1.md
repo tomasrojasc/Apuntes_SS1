@@ -705,3 +705,75 @@ Donde $F[\cdot]$ indica la función de sus argumentos.
 
 
 ### Sistemas lineales invariantes en el tiempo caracterizados por ecuaciones en diferencias de coeficientes constantes
+
+
+Antes vimos la ecuación para calcular la media acumulada, esa ecuación era _variante en el tiempo_ pq tenía coeficientes que variaban en el tiempo &rarr; no es una misma función de transferencia para todo $n$.
+
+Ahora, si tenemos constantes, entonces sí es invariante.
+
+Ejemplo:
+
+$$
+y(n)=ay(n-1)+x(n), \quad a=\text{constante}
+$$
+
+Asumamos que hay una condición inicial $y(-1)$, así nuestra pega es resolver un sistema con una señal de entrada $x(n)$ dado por:
+
+
+
+![](./img/img9.png)
+__Figura 9:__ varias iteraciones del sistema
+
+
+De manera compacta tenemos:
+
+$$
+y(n)=a{n+1}y(-1)+\sum_{k=0}^n a^k x(n-k), \quad n \geq 0
+$$
+
+Tenemos que la respuesta del sistema, depende en primer lugar de una condición inicial y después de la señal que introducimos.
+
+
+Se die que un sistema recursivo está en reposo si se inicia con condiciones iniciales nulas. A la "memoria" actual del sistema, le llamamos estado, y como es condiciones iniciales 0, le llamamos a la raspuesta con $y(-1)=0$ _respuesta para al estado cero_ y se designa $y_{\text{zs}}(n)$
+
+Así la respuesta al estado cero del sistema anterior está dada por
+
+$$
+y(n)=\sum_{k=0}^n a^k x(n-k), \quad n \geq 0
+$$
+
+notemos que esto es una operación de convolución entre la señal de entrada y la respuesta al impulso:
+$$
+h(n)=a^nu(n)
+$$
+
+Ahora supongamos el otro caso, donde la condicion inicial es $y(-1)\neq0$ pero la señal de entrada es $x(n)=0$, esta es la llamada _respuesta a entrada cero_, en este caso tenemos:
+
+$$
+y_{\text{zi}}(n)=a^{n+1}y(-1), \quad n\geq0
+$$
+
+vemos que este sistema no está en reposo en el sentido en que produce salida sin haber sido excitado por ninguna señal. La respuesta a la entrada cero se debe a la memoria del sistema.
+
+
+Como vimos, la respuesta a entrada cero, no depende de la entrada, es por esto que es propia del sistema en el sentido que es la respuesta "natural" del sistema.
+
+En general, la respuesta completa de un sistema se puede representar como:
+
+$$
+y(n)=y_{\text{zi}}(n)+y_{\text{zs}}(n)
+$$
+
+#### Revisemos la linealidad de un sistema
+
+Un sistema es lineal si cumple con:
+
+  + La respuesta total es igual a la suma de las respuestas a la entrada nula y en estado cero
+  + El principio de superposición se aplica a la respuesta para el estado nulo (_lineal para el estado nulo_)
+  + El principio de superposición se aplica a la respuesta a la entrada nula (_lineal para la entrada nula_)
+
+
+
+### Solución de las ecuaciones en diferencias lineales de coeficientes constantes
+
+Acá vamos a mostrar el _método directo_ para la resolución de estas ecuaciones.
