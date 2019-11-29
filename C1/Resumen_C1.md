@@ -843,8 +843,7 @@ Donde $y_h(n)$ se conoce como la _solución homogénea_ y $y_p(n)$ como la _solu
 
 
 
-
-
+# C2:
 
 # Análisis en frecuencia de las señales continuas en el tiempo
 
@@ -911,6 +910,7 @@ __Condiciones de Dirichlet:__
 En resumen, tenemos que si $x(t)$ es una señal periódica y satisface las condiciones de Dirichlet, se puede representar mediante una serie de Fourier. Esto está resumido en la siguiente tabla:
 
 ![](img/img10.png)
+
 __Figura 10:__ Tabla sacada del libro, cap 4
 
 
@@ -944,6 +944,82 @@ $$
 
 La serie de Fourier con todo es la de la ecuación de síntesis, estas últimas son para el caso en que la señal es real.
 
+## Espectro de densidad de potencia de señales periódicas
+
+Una señal periódica tiene energía infinita y una potencia media finita, y se define con la siguiente expresión:
+
 $$
-\text{¡¡¡Con esto termina la materia para el C1 del segundo semestre del 2019, mucho éxito a tods!!!}
+P_x=\frac{1}{T_p}\int_{T_p} |x(t)|^2dt
 $$
+
+Si tomamos el complejo conjugado de la ecuación de síntesis tenemos:
+
+$$
+\begin{aligned}
+  P_x&=\frac{1}{T_p}\int_{T_p} x(t) \cdot x^*(t) dt\\
+  &= \frac{1}{T_p}\int_{T_p} x(t) \cdot \sum_{k=-\infty}^\infty c_k^* e^{-j2\pi k F_0 t}  dt \\
+  &= \sum_{k=-\infty}^\infty c_k^* \cdot \frac{1}{T_p}\int_{T_p}x(t)e^{-j2\pi k F_0 t} dt\\
+  &= \sum_{k=-\infty}^\infty c_k^*\cdot c_k\\
+  &= \sum_{k=-\infty}^\infty |c_k|^2
+\end{aligned}
+$$
+
+La relación que se deduce de lo anterior es:
+
+$$ P_x=\frac{1}{T_p}\int_{T_p} |x(t)|^2 dt = \sum_{k=-\infty}^\infty |c_k|^2$$
+
+y se llama _relación de Parceval_ para señales de potencia.
+
+
+Con la identidad anteriormente mostrada, podemos ver que para cada coeficiente que acompaña una frecuencia determinada --- esto es, una exponencial compleja con una frecuencia determinada --- tenemos una potencia asociada que representa el aporte de esa frecuencia a la potencia de la señal. Esto es llamado el _espectro de densidad de potencia_ de una señal.
+
+Como ya hemos visto, los coeficientes de Fourier ${c_k}$ son complejos, por lo que se pueden escribir dela siguiente manera:
+
+$$
+c_k=|c_k|e^{j\theta_k}
+$$
+
+donde
+
+$$
+\theta_k=\angle c_k
+$$
+
+Si la señal evaluada es real, tenemos:
+
+$$c_{-k}=c_k^*$$
+
+Como para una señal real esto es simétrico, basta con especificar la parte real de espectro e inmediatamente tenemos la parte negativa por simetría.
+
+## Transformada de Fourier para señales continuas aperiodicas en el tiempo
+
+
+Consideremos una señal aperiódica $x(t)$ con duración finita como se muestra en la figura 11 (a):
+
+![](img/img11.png)
+
+__Figura 11:__ Imagen sacada del libro, cap 4
+
+Con esta señal aperiodica, podemos crear una señal periódica con intervalo $T_p$ como se muestra en la figura 11 (b)
+
+Podemos ver que a medida que el periódo de la señal periódica $x_p(t)$ tiende a infinito, ambas señales se vuelven idénticas:
+
+$$
+x(t)=\lim_{T_p \to \infty}x_p(t)
+$$
+
+Esto nos puede dar la intuición que si logramos tener el espectro para la señal periódica, podemos obtener el dela señal aperiódica haciéndo tender $T_p$ a infinito.
+
+Primero veamos la serie de Fourier de la señal periodica:
+
+
+$$
+x_p(t)=\sum_{k=-\infty}^\infty c_k e^{j2\pi k F_0t}, \qquad F_0=\frac{1}{T_p}
+$$
+
+donde
+$$
+c_k=\frac{1}{T_p}\int_{-T_p/2}^{T_p/2} x_p(t)e^{-j2\pi kF_0t}dt
+$$
+
+como $x_p(t)=x(t)$ para $-T/2\leq t\geq T_p/2$ d
