@@ -1022,4 +1022,53 @@ $$
 c_k=\frac{1}{T_p}\int_{-T_p/2}^{T_p/2} x_p(t)e^{-j2\pi kF_0t}dt
 $$
 
-como $x_p(t)=x(t)$ para $-T/2\leq t\geq T_p/2$ d
+como $x_p(t)=x(t)$ para $-T/2\leq t\geq T_p/2$
+
+$$
+c_k = \frac{1}{T_p}\int_{-T_p/2}^{T_p/2} x(t)e^{-j2\pi kF_0t}dt
+$$
+
+como también cumple que la función aperiódica es siempre 0 fuera del pulso, tenemos que lo anterior es igual a
+
+$$
+c_k = \frac{1}{T_p}\int_{-\infty}^{\infty} x(t)e^{-j2\pi kF_0t}dt
+$$
+
+
+Ahora definamos una nueva función $X(F)$ que llamaremos _transformada de Fourier_ de $x(t)$, como
+$$
+X(F)=\int_{-\infty}^{\infty} x(t) e^{-j2\pi k F_0 t} dt
+$$
+
+Vemos que esta transformada no depende ni de $T_p$ ni de $F_0$ pero es evidente que $c_k$ se puede expresar con la transformada de Fourier de la siguiente manera
+
+$$
+c_k = \frac{1}{T_p}X(kF_0)
+$$
+
+de manera equivalente
+
+$$
+T_pc_k=X(kF_0)=X\left(\frac{k}{T_p}\right)
+$$
+
+Así vemos que los coeficientes de Fourier son en verdad muestras de la transformada de Fourier con un factor de escala $F_0$. Sustituyendo lo anterior en la serie de Fourier, tenemos
+
+$$
+x_p(t)=\frac{1}{T_p}\sum_{k=-\infty}^\infty X(k\Delta F)e^{-j2\pi k \Delta F t} \Delta F
+$$
+
+Se cacha que a medida que $T_p$ tiende a infinito, $x_p(t)$ tiende a $x(t)$, ya que en el fondo la señal no periódica tiene un periodo infinito.
+
+Así:
+
+$$
+\lim_{T_p \to \infty}x_p(t)=x(t)=\lim_{\Delta F \to 0}\sum_{k=-\infty}^\infty X(k\Delta F)e^{-j2\pi k \Delta F t} \Delta F
+= \int_{-\infty}^\infty X(F) e^{j2\pi F t}dF
+$$
+
+Esta integral nos proporciona $x(t)$ cuando tenemos $X(F)$ y se llama _transformada inversa de Fourier_
+
+![](img/img12.png)
+
+__Figura 11:__ Imagen sacada del libro, cap 4
